@@ -8,7 +8,8 @@ export default function App() {
 
   // I check una ang localstorage kung naay unod ang todos key,
   // if wala just use empty array. This is good because we can leverage
-  // the useEffect to only get the the localstorage when there are values inside.
+  // the useEffect to only get the the localstorage when there are values inside
+
   const [todos, setTodos] = React.useState(() => {
     const storedTodos = localStorage.getItem("todos");
     return storedTodos ? JSON.parse(storedTodos) : [];
@@ -68,6 +69,7 @@ export default function App() {
     setModal(null);
   };
 
+  // Mark the card as done or not done.
   const handleMarkAsDone = (indexOfCard) => {
     console.log("clicked");
     const newTodos = todos.map((todo, index) =>
@@ -78,6 +80,7 @@ export default function App() {
     setModal(null);
   };
 
+  // Set the card to todo or not todo.
   const handleSetToTodo = (indexOfCard) => {
     console.log("clicked");
     const newTodos = todos.map((todo, index) =>
@@ -88,18 +91,21 @@ export default function App() {
     setModal(null);
   };
 
+  // Show all the todos.
   const handleAllClick = () => {
     console.log("All is clicked!");
     const allTodos = todos.map((todo) => todo);
     setFilteredTodos(todos);
   };
 
+  // Show all the todos that are not done.
   const handleTodoClick = () => {
     console.log("To-do is clicked!");
     const todoTodos = todos.filter((todo) => !todo.done);
     setFilteredTodos(todoTodos);
   };
 
+  // Show all the todos that are done.
   const handleDoneClick = () => {
     console.log("Done is clicked!");
     const doneTodos = todos.filter((todo) => todo.done);
